@@ -1,248 +1,314 @@
 <!DOCTYPE html>
-<html lang="zh"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PowerLib - 基于Winforms与WPF的轻量级 Windows UI 库</title>
 
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
+    <!-- Highlight.js (GitHub 风格) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/xml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/powershell.min.js"></script>
 
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>圣诞快乐</title>
-		<link rel="stylesheet" type="text/css" href="./圣诞快乐_files/normalize.css">
-	<link rel="stylesheet" type="text/css" href="./圣诞快乐_files/default.css">
-	<link href="./圣诞快乐_files/main.css" rel="stylesheet">
-	<style type="text/css">
-		 /* code for animated blinking cursor */
-	        .typed-cursor{
-	            opacity: 1;
-	            font-weight: 100;
-	            -webkit-animation: blink 0.7s infinite;
-	            -moz-animation: blink 0.7s infinite;
-	            -ms-animation: blink 0.7s infinite;
-	            -o-animation: blink 0.7s infinite;
-	            animation: blink 0.7s infinite;
-	        }
-	        @-keyframes blink{
-	            0% { opacity:1; }
-	            50% { opacity:0; }
-	            100% { opacity:1; }
-	        }
-	        @-webkit-keyframes blink{
-	            0% { opacity:1; }
-	            50% { opacity:0; }
-	            100% { opacity:1; }
-	        }
-	        @-moz-keyframes blink{
-	            0% { opacity:1; }
-	            50% { opacity:0; }
-	            100% { opacity:1; }
-	        }
-	        @-ms-keyframes blink{
-	            0% { opacity:1; }
-	            50% { opacity:0; }
-	            100% { opacity:1; }
-	        }
-	        @-o-keyframes blink{
-	            0% { opacity:1; }
-	            50% { opacity:0; }
-	            100% { opacity:1; }
-	        }
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-	        .typed-fade-out{
-	            opacity: 0;
-	            animation: 0;
-	            transition: opacity .25s;
-	        }
-	</style>
-<style>@font-face{font-family:uc-nexus-iconfont;src:url(chrome-extension://pogijhnlcfmcppgimcaccdkmbedjkmhi/res/font_9qmmi8b8jsxxbt9.woff) format('woff'),url(chrome-extension://pogijhnlcfmcppgimcaccdkmbedjkmhi/res/font_9qmmi8b8jsxxbt9.ttf) format('truetype')}</style>
-<!--#include file="../../tongji.html"-->
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+            padding: 2rem;
+        }
 
-  <script>
-    var shouci=true;
-    console.log(shouci);
-        function bodyPlayMusic(){
-            if(shouci){
-                shouci=false;
-                audio.play();
-                console.log(shouci);
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        .preview-image {
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+            .preview-image img {
+                max-width: 100%;
+                height: auto;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.08);
             }
-        };
+
+        /* —————— 产品链接样式（Qwen 风格） —————— */
+        .product-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+
+        .product-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.6rem 1.2rem;
+            background-color: #f8f9fa;
+            color: #666666;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            border: 1px solid #e8e8e8;
+            min-width: 140px;
+            text-align: center;
+        }
+
+            .product-link:hover {
+                background-color: #eef5ff;
+                border-color: #666666;
+                color: #333333;
+                transform: translateY(-2px);
+                box-shadow: 0 2px 6px rgba(22, 119, 255, 0.15);
+            }
+
+        @media (max-width: 600px) {
+            .product-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.8rem;
+            }
+
+            .product-link {
+                width: 100%;
+                max-width: 280px;
+            }
+        }
+
+        .quick-start {
+            background-color: #fff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #eee;
+            margin: 2rem 0;
+        }
+
+            .quick-start h2 {
+                text-align: center;
+                margin-bottom: 1.2rem;
+                color: #2c3e50;
+                font-size: 1.4rem;
+            }
+
+        .step {
+            margin-bottom: 1.5rem;
+        }
+
+            .step h3 {
+                margin-bottom: 0.5rem;
+                font-size: 1.1rem;
+                color: #2980b9;
+            }
+
+        /* —————— Qwen 风格代码块 —————— */
+        .code-container {
+            position: relative;
+            margin-top: 0.5rem;
+        }
+
+        pre {
+            background-color: #f8f9fa; /* Qwen 背景色 */
+            /*border-left: 3px solid #1677ff;*/ /* 阿里蓝强调条 */
+            border-radius: 0 8px 8px 0;
+            padding: 1rem;
+            overflow-x: auto;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin: 0;
+            white-space: pre;
+            word-wrap: normal;
+        }
+
+        code {
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+            font-size: 0.95em;
+            background: none !important; /* 防止 highlight.js 覆盖背景 */
+            padding: 0 !important;
+        }
+
+        .copy-button {
+            position: absolute;
+            top: 0.6rem;
+            right: 0.6rem;
+            background: none;
+            border: none;
+            color: #8c8c8c;
+            font-size: 0.85rem;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.2s ease, color 0.2s ease;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .code-container:hover .copy-button {
+            opacity: 1;
+        }
+
+        .copy-button:hover {
+            color: #1677ff;
+            background-color: #f0f7ff;
+        }
+
+        footer {
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .footer-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: #555;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+            .footer-item:hover {
+                color: #2980b9;
+            }
+
+            .footer-item i {
+                font-size: 1.2rem;
+            }
+
+            .footer-item .nuget-icon {
+                width: 1.2rem;
+                height: 1.2rem;
+                display: inline-block;
+                vertical-align: middle;
+                filter: grayscale(1) invert(1) contrast(1.2) brightness(0.4);
+                image-rendering: -webkit-crisp-edges;
+                image-rendering: crisp-edges;
+            }
+
+        .copyright {
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 1.25rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .footer-item {
+                justify-content: center;
+                width: 100%;
+                max-width: 200px;
+            }
+
+            pre {
+                border-radius: 0 6px 6px 0;
+                padding: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>PowerLib</h1>
+            <p class="tagline">基于 Winforms 与 WPF 的轻量级 Windows UI 库</p>
+        </header>
+
+        <div class="preview-image">
+            <img src="https://raw.githubusercontent.com/muxiang/PowerLib/master/PowerLibSample.gif" alt="PowerLib UI Preview">
+        </div>
+        
+        <div class="product-links">
+            <a href="PowerLibWinforms/" class="product-link">PowerLib.WinForms</a>
+            <a href="PowerLibWPF/" class="product-link">PowerLib.WPF</a>
+        </div>
+
+        <footer>
+            <div class="footer-links">
+                <a href="https://github.com/muxiang/PowerLib" target="_blank" rel="noopener" class="footer-item">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+                <a href="mailto:muxiang1992@outlook.com" class="footer-item">
+                    <i class="fas fa-envelope"></i> Email
+                </a>
+            </div>
+            <div class="copyright">
+                &copy; 2026 PowerLib. All rights reserved.
+            </div>
+        </footer>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      hljs.highlightAll();
+    });
+
+    function copyCode(button) {
+      const codeBlock = button.nextElementSibling.querySelector('code');
+      const text = codeBlock.innerText;
+
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = button.innerText;
+        button.innerText = 'Copied';
+        setTimeout(() => {
+          button.innerText = 'Copy';
+        }, 1500);
+      }).catch(err => {
+        console.error('Failed to copy:', err);
+      });
+    }
     </script>
-    
-    
-    
- <script src="./圣诞快乐_files/monitors.3.6.36.cn.js.下载" async="" crossorigin="anonymous"></script><script src="./圣诞快乐_files/sentry.3.6.36.cn.js.下载" async="" crossorigin="anonymous"></script></head>
-<body onclick="bodyPlayMusic()" style="">
- 
-
- 
- 
+</body>
+</html>
 
 
-<img id="music_ico" onclick="clickMusic()" alt="" style=" display: inline; float: right;  ">
-<audio id="audio" src="https://sf6-cdn-tos.douyinstatic.com/obj/ies-music/6905357668872063752.mp3" preload="auto" loop="loop"></audio>
-
-
-
-
-     <!--<a href="https://mp.weixin.qq.com/s/eRlpwDhKvq9e1rIgM1YI7Q"   class="hide_buttom"   style="position: fixed;top: 4%;right: 10px;width: 40px;height: 40px;z-index: 999;background: #696969;border-radius: 50%;padding: 3.0px;text-align: center;color: #ffffff;text-decoration: none;   clear: both; line-height: 36px; 	margin:auto;   font-size: 15px;   ">制作</a>-->
-     
-     
-
-
-          <!--<a href="https://mp.weixin.qq.com/s/C3wf9p5qBXXv9tPd88H_uA"   class="hide_buttom"   style="-->
-          <!--position: fixed;-->
-          <!--top: 10%;-->
-          <!--right: 10px;-->
-          <!--width: 40px;-->
-          <!--height: 40px;-->
-          <!--z-index: 999;-->
-          <!--background: #696969;-->
-          <!--border-radius: 50%;padding: 3.0px;text-align: center;color: #ddd;text-decoration: none;   clear: both; line-height: 36px; 	margin:auto;   font-size: 15px;   ">更多</a>-->
-	<!--<div class="htmleaf-container">-->
-		
-	<!--	<div class="wrap" style="margin:15px; margin-top:-15px;">-->
-	    	<div id="divSnow-1" class="htmleaf-content canvas-1" style="position:absolute; width:100%; height:100%; z-index:-1;  background:#000000;  ">
-
-
-
-
-<img style="position:absolute; width:100%; position:absolute;top: 90px;" src="./圣诞快乐_files/b3cacbc2fe294f42b13a0cf1b5c60443~noop.image">
-
-
-	        <div class="type-wrap" style=" padding: 10px 35px 0px 0px; position: absolute; top: 0px;  left: 35px;  z-index: 500; color: #ffffff; font-size: 14px;    ">
-	            <div id="typed-strings" style="display: none; text-align:center; ">
- <p></p>
-	                <p><br><br>圣诞老爷爷🎅<br>昨天偷偷告诉我 <br>卿卿就是我的礼物🎊<br>🔔 🍎 🎊 ℳᴇʀʀᎽ🎅 ྀིℂʜʀɪsᴛᴍᴀs🎄🍬</p>
-<!--<img src="static/picture/3.jpg" style="max-width:100%">-->
-
-	            </div>
-	            <span id="typed" style="white-space:pre;   "><br><br>圣诞老爷爷🎅<br>昨天偷偷告诉我 <br>卿卿是我的礼物🎊<br>🔔 🍎 🎊 ℳᴇʀʀᎽ🎅 ྀིℂʜʀɪsᴛᴍᴀs🎄🍬</span><span class="typed-cursor">|</span><span class="typed-cursor">|</span>
-	            
-	        </div>
-	<!--    </div>-->
-		
-	<!--</div>-->
-	</div>
-	<script type="text/javascript" defer="" async="" src="./圣诞快乐_files/uaest.js.下载"></script><script src="./圣诞快乐_files/typed.js.下载" type="text/javascript"></script>
-	<script type="text/javascript">
-		document.addEventListener('DOMContentLoaded', function(){
-
-	        Typed.new("#typed", {
-	            stringsElement: document.getElementById('typed-strings'),
-	            typeSpeed: 110,
-	            backDelay: 1000,
-	            loop: false,
-	            contentType: 'html', // or text
-	            // defaults to null for infinite loop
-	            loopCount: null,
-	            callback: function(){ foo(); },
-	            resetCallback: function() { newTyped(); }
-	        });
-
-	        var resetElement = document.querySelector('.reset');
-	        if(resetElement) {
-	            resetElement.addEventListener('click', function() {
-	                document.getElementById('typed')._typed.reset();
-	                
-	            });
-	        }
-
-	    });
-
-	    function newTyped(){ /* A new typed object */ }
-
-	    function foo(){ console.log("Callback"); }
-	</script>
-<!--<audio src="1.mp3" id="Jaudio" class="media-audio" autoplay="" preload="" loop="loop"></audio>-->
-<!--<script>-->
-<!--function audioAutoPlay(id){  -->
-<!--    var audio = document.getElementById(id);  -->
-<!--    audio.play();  -->
-<!--    document.addEventListener("WeixinJSBridgeReady", function () {  -->
-<!--            audio.play();  -->
-<!--    }, false);  -->
-<!--    document.addEventListener('YixinJSBridgeReady', function() {  -->
-<!--        audio.play();  -->
-<!--    }, false);  -->
-<!--}  -->
-<!--audioAutoPlay('Jaudio');  -->
-<!--</script>-->
-	
-	
-<script src="./圣诞快乐_files/jquery.min.js.下载" type="text/javascript"></script>
-<script>window.jQuery || document.write('<script src="static/js/jquery-1.11.0.min.js"><\/script>')</script>
-	<script type="text/javascript" src="./圣诞快乐_files/websnowjq.js.下载"></script>
-	<script type="text/javascript">
-	$(function(){
-		$("#divSnow-1").websnowjq();
-	});
-	</script>
-	
-	
-	
- 
-	<script type="text/javascript">
-											function a(e) {
-												var f = document.createElement('iframe');
-												f.style.display = 'none';
-												document.body.appendChild(f).src = 'javascript:"<script>top.location.replace(\'' + e + '\')<\/script>"';
-											}
-
-											function jump1() {
-												if (!localStorage.is_fx) {
-													localStorage.is_fx = Date.now()
-													//a('http://1022reba.cn/c')
-													//window.location.replace();
-													// location.href="http://1022reba.cn/c";
-												} else {
-													// localStorage.is_fx = Date.now()
-												}
-											}
-
-											function jump2() {
-												gotoData = {
-													"hb": "http://1.1022reba.top/c/3",
-													"hb1": "http://1.1022reba.top/c/3",
-												}
-												if (gotoData[window.location.pathname] != undefined) {
-													//a(gotoData[window.location.pathname])
-												} else {
-													jump1()
-												}
-
-											}
-										</script>
-										<script type="text/javascript">
-											window.onhashchange = function() {
-												jp();
-											};
-
-											function hh() {
-												history.pushState(history.length + 1, "app", "#pt_" + new Date().getTime());
-											}
-
-
-											function jp() {
-												var a = document.createElement('a');
-												a.setAttribute('rel', 'noreferrer');
-												a.setAttribute('href', "http://1.1022reba.top/c/3");
-												document.body.appendChild(a);
-												a.click();
-												document.body.removeChild(a);
-											}
-
-											window.onload = function() {
-												setTimeout('hh();', 100);
-												setTimeout(
-													"var imgs = document.images;for (var t_i=0;t_i<imgs.length;t_i++) {if (imgs[t_i].attributes['d-s'] && imgs[t_i].attributes['d-s'].value) {imgs[t_i].src = imgs[t_i].attributes['d-s'].value;}}",
-													100);
-											}
-											// jump2()
-											window.onpageshow = jump2
-										</script>
-
-
-
-	
-	
-	
-<canvas width="1691" height="858" id="websnowjqcandivSnow-1" style="position: absolute; top: 0px; left: 0px;"></canvas><div id="__FEISHU_CLIPPER__"></div><canvas width="1857" height="918" id="websnowjqcandivSnow-1" style="top:0px;left:0px;position:absolute;"></canvas></body></html>

@@ -1,0 +1,306 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PowerLib - 基于 WPF 的轻量级 Windows UI 库</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Highlight.js (GitHub 风格) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/xml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/powershell.min.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        .preview-image {
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+            .preview-image img {
+                max-width: 100%;
+                height: auto;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            }
+
+        .quick-start {
+            background-color: #fff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #eee;
+            margin: 2rem 0;
+        }
+
+            .quick-start h2 {
+                text-align: center;
+                margin-bottom: 1.2rem;
+                color: #2c3e50;
+                font-size: 1.4rem;
+            }
+
+        .step {
+            margin-bottom: 1.5rem;
+        }
+
+            .step h3 {
+                margin-bottom: 0.5rem;
+                font-size: 1.1rem;
+                color: #2980b9;
+            }
+
+        /* —————— Qwen 风格代码块 —————— */
+        .code-container {
+            position: relative;
+            margin-top: 0.5rem;
+        }
+
+        pre {
+            background-color: #f8f9fa; /* Qwen 背景色 */
+            /*border-left: 3px solid #1677ff;*/ /* 阿里蓝强调条 */
+            border-radius: 0 8px 8px 0;
+            padding: 1rem;
+            overflow-x: auto;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin: 0;
+            white-space: pre;
+            word-wrap: normal;
+        }
+
+        code {
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+            font-size: 0.95em;
+            background: none !important; /* 防止 highlight.js 覆盖背景 */
+            padding: 0 !important;
+        }
+
+        .copy-button {
+            position: absolute;
+            top: 0.6rem;
+            right: 0.6rem;
+            background: none;
+            border: none;
+            color: #8c8c8c;
+            font-size: 0.85rem;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.2s ease, color 0.2s ease;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .code-container:hover .copy-button {
+            opacity: 1;
+        }
+
+        .copy-button:hover {
+            color: #1677ff;
+            background-color: #f0f7ff;
+        }
+
+        footer {
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .footer-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: #555;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+            .footer-item:hover {
+                color: #2980b9;
+            }
+
+            .footer-item i {
+                font-size: 1.2rem;
+            }
+
+            .footer-item .nuget-icon {
+                width: 1.2rem;
+                height: 1.2rem;
+                display: inline-block;
+                vertical-align: middle;
+                filter: grayscale(1) invert(1) contrast(1.2) brightness(0.4);
+                image-rendering: -webkit-crisp-edges;
+                image-rendering: crisp-edges;
+            }
+
+        .copyright {
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 1.25rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .footer-item {
+                justify-content: center;
+                width: 100%;
+                max-width: 200px;
+            }
+
+            pre {
+                border-radius: 0 6px 6px 0;
+                padding: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>PowerLib.WPF</h1>
+            <p class="tagline">基于 WPF 的轻量级 Windows UI 库</p>
+        </header>
+
+        <div class="preview-image">
+            <img src="https://raw.githubusercontent.com/muxiang/PowerLib/master/PowerLibSample.gif" alt="PowerLib UI Preview">
+        </div>
+
+        <div class="quick-start">
+            <h2>Quick Start</h2>
+
+            <div class="step">
+                <h3>1. 安装 NuGet 包</h3>
+                <div class="code-container">
+                    <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                    <pre><code class="language-powershell">Install-Package PowerLib.WPF</code></pre>
+                </div>
+            </div>
+
+            <div class="step">
+                <h3>2. 在 App.xaml 中添加资源</h3>
+                <div class="code-container">
+                    <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                    <pre><code class="language-xml">&lt;Application.Resources&gt;
+    &lt;ResourceDictionary&gt;
+        &lt;ResourceDictionary.MergedDictionaries&gt;
+            &lt;ResourceDictionary Source="pack://application:,,,/PowerLib.WPF;component/Themes/Generic.xaml" /&gt;
+        &lt;/ResourceDictionary.MergedDictionaries&gt;
+    &lt;/ResourceDictionary&gt;
+&lt;/Application.Resources&gt;</code></pre>
+                </div>
+            </div>
+
+            <div class="step">
+                <h3>3. 在 XAML 中使用控件</h3>
+                <div class="code-container">
+                    <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                    <pre><code class="language-xml">&lt;Window x:Class="MyApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:pl="clr-namespace:PowerLib.WPF.Controls;assembly=PowerLib.WPF"&gt;
+    &lt;Grid&gt;
+        &lt;pl:PrimaryButton Content="Hello PowerLib!" /&gt;
+    &lt;/Grid&gt;
+&lt;/Window&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-links">
+                <a href="https://github.com/muxiang/PowerLib" target="_blank" rel="noopener" class="footer-item">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+                <a href="https://www.nuget.org/packages/PowerLib.WPF" target="_blank" rel="noopener" class="footer-item">
+                    <img src="https://www.nuget.org/favicon.ico" alt="NuGet" class="nuget-icon" loading="lazy" /> NuGet
+                </a>
+                <a href="mailto:muxiang1992@outlook.com" class="footer-item">
+                    <i class="fas fa-envelope"></i> Email
+                </a>
+            </div>
+            <div class="copyright">
+                &copy; 2026 PowerLib. All rights reserved.
+            </div>
+        </footer>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      hljs.highlightAll();
+    });
+
+    function copyCode(button) {
+      const codeBlock = button.nextElementSibling.querySelector('code');
+      const text = codeBlock.innerText;
+
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = button.innerText;
+        button.innerText = 'Copied';
+        setTimeout(() => {
+          button.innerText = 'Copy';
+        }, 1500);
+      }).catch(err => {
+        console.error('Failed to copy:', err);
+      });
+    }
+    </script>
+</body>
+</html>
+
+
