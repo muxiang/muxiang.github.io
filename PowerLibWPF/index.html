@@ -50,6 +50,11 @@
             color: #555;
         }
 
+        .tagline_small {
+            font-size: 1rem;
+            color: #555;
+        }
+
         .preview-image {
             margin: 2rem 0;
             text-align: center;
@@ -214,7 +219,8 @@
     <div class="container">
         <header>
             <h1>PowerLib.WPF</h1>
-            <p class="tagline">基于 WPF 的轻量级 Windows UI 库</p>
+            <p class="tagline">基于 WPF 的轻量级 Windows UI 库，支持切换主题，支持绝大部分原生控件，</p>
+            <p class="tagline">并提供了包括水波特效，win8风格加载动画，win10风格文件传输进度条，加载遮罩层等在内的多款扩展控件。</>
         </header>
 
         <div class="preview-image">
@@ -282,24 +288,24 @@
     </div>
 
     <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      hljs.highlightAll();
-    });
+        document.addEventListener('DOMContentLoaded', () => {
+            hljs.highlightAll();
+        });
 
-    function copyCode(button) {
-      const codeBlock = button.nextElementSibling.querySelector('code');
-      const text = codeBlock.innerText;
+        function copyCode(button) {
+            const codeBlock = button.nextElementSibling.querySelector('code');
+            const text = codeBlock.innerText;
 
-      navigator.clipboard.writeText(text).then(() => {
-        const originalText = button.innerText;
-        button.innerText = 'Copied';
-        setTimeout(() => {
-          button.innerText = 'Copy';
-        }, 1500);
-      }).catch(err => {
-        console.error('Failed to copy:', err);
-      });
-    }
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = button.innerText;
+                button.innerText = 'Copied';
+                setTimeout(() => {
+                    button.innerText = 'Copy';
+                }, 1500);
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+            });
+        }
     </script>
 </body>
 </html>
