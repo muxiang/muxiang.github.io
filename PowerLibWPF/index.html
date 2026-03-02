@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PowerLib.Winforms - 基于 Winforms 的轻量级 Windows UI 库</title>
+    <title>PowerLib - 基于 WPF 的轻量级 Windows UI 库</title>
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -213,12 +213,12 @@
 <body>
     <div class="container">
         <header>
-            <h1>PowerLib.Winforms</h1>
-            <p class="tagline">基于 Winforms 的轻量级 Windows UI 库</p>
+            <h1>PowerLib.WPF</h1>
+            <p class="tagline">基于 WPF 的轻量级 Windows UI 库</p>
         </header>
 
         <div class="preview-image">
-            <img src="https://raw.githubusercontent.com/muxiang/PowerLib/master/PowerLibSample.gif" alt="PowerLib UI Preview">
+            <img src="https://raw.githubusercontent.com/muxiang/PowerLib/master/PowerLib.WPF_Default.png" alt="PowerLib UI Preview">
         </div>
 
         <div class="quick-start">
@@ -228,10 +228,39 @@
                 <h3>1. 安装 NuGet 包</h3>
                 <div class="code-container">
                     <button class="copy-button" onclick="copyCode(this)">Copy</button>
-                    <pre><code class="language-powershell">Install-Package PowerLib.Winforms</code></pre>
+                    <pre><code class="language-powershell">Install-Package PowerLib.WPF</code></pre>
                 </div>
             </div>
-            
+
+            <div class="step">
+                <h3>2. 在 App.xaml 中添加资源</h3>
+                <div class="code-container">
+                    <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                    <pre><code class="language-xml">&lt;Application.Resources&gt;
+    &lt;ResourceDictionary&gt;
+        &lt;ResourceDictionary.MergedDictionaries&gt;
+            &lt;ResourceDictionary Source="pack://application:,,,/PowerLib.WPF;component/Themes/SkinDefault.xaml" /&gt;
+            &lt;ResourceDictionary Source="pack://application:,,,/PowerLib.WPF;component/Themes/Generic.xaml" /&gt;
+        &lt;/ResourceDictionary.MergedDictionaries&gt;
+    &lt;/ResourceDictionary&gt;
+&lt;/Application.Resources&gt;</code></pre>
+                </div>
+            </div>
+
+            <div class="step">
+                <h3>3. 在 XAML 中使用控件</h3>
+                <div class="code-container">
+                    <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                    <pre><code class="language-xml">&lt;pl:Window x:Class="MyApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:pl="https://muxiang.github.io/powerlibwpf"&gt;
+    &lt;Grid&gt;
+        &lt;Button Content="Hello PowerLib!" /&gt;
+    &lt;/Grid&gt;
+&lt;/pl:Window&gt;</code></pre>
+                </div>
+            </div>
         </div>
 
         <footer>
@@ -239,7 +268,7 @@
                 <a href="https://github.com/muxiang/PowerLib" target="_blank" rel="noopener" class="footer-item">
                     <i class="fab fa-github"></i> GitHub
                 </a>
-                <a href="https://www.nuget.org/packages/PowerLib.Winforms" target="_blank" rel="noopener" class="footer-item">
+                <a href="https://www.nuget.org/packages/PowerLib.WPF" target="_blank" rel="noopener" class="footer-item">
                     <img src="https://www.nuget.org/favicon.ico" alt="NuGet" class="nuget-icon" loading="lazy" /> NuGet
                 </a>
                 <a href="mailto:muxiang1992@outlook.com" class="footer-item">
